@@ -1,7 +1,8 @@
 import './Video.css'
 
 function Video({ title,id, channel, views, time, verified,children}) {
-    
+    console.log('render video')
+
     return (
         <>
             <div className='container'>

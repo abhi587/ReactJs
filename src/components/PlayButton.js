@@ -1,25 +1,24 @@
+import { useState } from 'react';
 import './PlayButton.css';
 
 function PlayButton({message,children,onPlay,onPause}){
+    console.log('render playButton')
 
-    let playing = false;  
-    // e is event object
+    const [playing, setPlaying] = useState(false);  
+    
     function handleClick(e){
-        console.log(e)
-        //to stop event bubbling we have a method called event propogation
-        e.stopPropagation()
+        // console.log(e)
 
-        e.preventDefault()// it is used to stop the default behaviour of the event that is going to happen in the html page ex- in form 
-        // submit button is their and if we want to stop that button we use this
+        e.stopPropagation()
 
         if(playing) onPause();
         else onPlay();
 
-        playing = !playing;
+        setPlaying(!playing);
     }
 
     return (
-            <button onClick={handleClick}>{children} : {playing ? '>':'||'}</button>
+            <button onClick={handleClick}>{children} : {playing ? '⏸️':'▶️'}</button>
         )
 
     // return (
