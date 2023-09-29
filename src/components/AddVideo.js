@@ -9,7 +9,7 @@ const initialState = {
     views:''
 }
 
-function AddVideo({addVideos, updateVideo, editableVideo}) {
+function AddVideo({dispatch, editableVideo}) {
 
     const [video, setVideo] = useState(initialState)
 
@@ -17,11 +17,11 @@ function AddVideo({addVideos, updateVideo, editableVideo}) {
         e.preventDefault();
         if(editableVideo){
 
-            updateVideo(video)
+            dispatch({ type: 'UPDATE', payload: video })
 
         }else{
 
-            addVideos(video)
+            dispatch({ type: 'ADD', payload: video })
 
         }
         

@@ -1,12 +1,12 @@
 import './Video.css'
 
-function Video({ title,id, channel, views, time, verified,children,deleteVideo,editVideo}) {
+function Video({ title,id, channel, views, time, verified,children,dispatch,editVideo}) {
     console.log('render video')
 
     return (
         <>
             <div className='container'>
-                <button className='close' onClick={()=>deleteVideo(id)}>X</button>
+                <button className='close' onClick={()=>dispatch({ type: 'DELETE', payload: id })}>X</button>
                 <button className='edit' onClick={()=>editVideo(id)}>Edit</button>
                 <div className='pic'>
                     <img
