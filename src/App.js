@@ -4,7 +4,8 @@ import videoDB from "./data/data"
 import AddVideo from './components/AddVideo';
 import Counter from './components/counter';
 import VideoList from './components/videoList';
-import { useReducer, useState } from 'react';
+import { useContext, useReducer, useState } from 'react';
+import ThemeContext from './context/ThemeContext';
 
 function App() {
   console.log('render app')
@@ -35,19 +36,25 @@ function App() {
 
   const [videos, dispatch] = useReducer(videoReducer, videoDB)
 
+  // const themeContext = useContext(ThemeContext);
+
+  const [mode, setMode] = useState('darkMode')
+
 
   function editVideo(id) {
     seteditableVideo(videos.find(video => video.id === id))
   }
 
- 
+
   return (
-    // app is used to show event bubbling when an event occurs it will propogate till its parents,we need to stop it ,we can 
-    // stop it by using event object
-    <div className='App' onClick={() => console.log('App')}>
-      <AddVideo dispatch={dispatch}  editableVideo={editableVideo}></AddVideo>
-      <VideoList  dispatch={dispatch} editVideo={editVideo} videos={videos}></VideoList>
-    </div>
+    <ThemeContext.Provider value={mode}>
+      <div className={`App ${mode}`} onClick={() => console.log('App')}>
+        <button onClick={() => setMode(mode === 'darkMode' ? 'lightMode' : 'darkMode')}>Mode</button>
+        <AddVideo dispatch={dispatch} editableVideo={editableVideo}></AddVideo>
+        <VideoList dispatch={dispatch} editVideo={editVideo} videos={videos}></VideoList>
+
+      </div >
+    </ThemeContext.Provider>
   )
 }
 
