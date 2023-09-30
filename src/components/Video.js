@@ -1,10 +1,12 @@
 import { useContext } from 'react';
 import './Video.css'
 import ThemeContext from '../context/ThemeContext';
+import useVideoDispatch from '../hooks/VideoDispatch';
 
-function Video({ title,id, channel, views, time, verified,children,dispatch,editVideo}) {
+function Video({ title,id, channel, views, time, verified,children,editVideo}) {
     console.log('render video')
     const theme = useContext(ThemeContext)
+    const dispatch = useVideoDispatch()
 
     return (
         <>

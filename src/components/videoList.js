@@ -1,9 +1,11 @@
 import Video from "./Video"
 import PlayButton from "./PlayButton"
+import { useContext } from "react"
+import useVideos from "../hooks/Videos"
 
 
-function VideoList({ videos, dispatch, editVideo}) {
-
+function VideoList({ editVideo}) {
+    const videos = useVideos()
     return (
         <>
             {
@@ -16,7 +18,7 @@ function VideoList({ videos, dispatch, editVideo}) {
                     verified={video.verified}
                     id={video.id}
                     editVideo = {editVideo}
-                    dispatch = {dispatch}
+                    
                 >
                     <PlayButton
                         onPlay={() => console.log('Playing..', video.title)}
