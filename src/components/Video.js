@@ -1,12 +1,23 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import './Video.css'
 import ThemeContext from '../context/ThemeContext';
 import useVideoDispatch from '../hooks/VideoDispatch';
 
 function Video({ title,id, channel, views, time, verified,children,editVideo}) {
-    console.log('render video')
+    console.log('render video',id)
     const theme = useContext(ThemeContext)
     const dispatch = useVideoDispatch()
+
+
+    // //render - mounting(firstTime)- unmount
+    // useEffect(()=>{
+    //     const idx= setInterval(()=>{
+    //         console.log('video playing',id)   // {inside}-callBack
+    //     },3000)
+    //     return()=>{
+    //         clearInterval(idx)
+    //     }
+    // },[id])  //[]-dependency array
 
     return (
         <>

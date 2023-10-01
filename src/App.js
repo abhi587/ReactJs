@@ -13,8 +13,11 @@ function App() {
   console.log('render app')
   const [editableVideo, seteditableVideo] = useState(null)
 
+
   function videoReducer(videos, action) {
     switch (action.type) {
+      case 'LOAD':
+        return action.payload;
       case 'ADD':
         return [
           ...videos,
@@ -36,7 +39,7 @@ function App() {
     }
   }
 
-  const [videos, dispatch] = useReducer(videoReducer, videoDB)
+  const [videos, dispatch] = useReducer(videoReducer, [])
 
   // const themeContext = useContext(ThemeContext);
 
