@@ -1,8 +1,8 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, memo } from 'react';
 import './PlayButton.css';
 import ThemeContext from '../context/ThemeContext';
 
-function PlayButton({message,children,onPlay,onPause}){
+const PlayButton = memo ( function PlayButton({message,children,onPlay,onPause}){
     console.log('render playButton')
     const theme = useContext(ThemeContext)
 
@@ -27,6 +27,6 @@ function PlayButton({message,children,onPlay,onPause}){
     //     <button onClick={()=>console.log('play')}>Play</button>
     // )
 
-}
+})
 
 export default PlayButton;

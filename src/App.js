@@ -4,7 +4,7 @@ import videoDB from "./data/data"
 import AddVideo from './components/AddVideo';
 import Counter from './components/counter';
 import VideoList from './components/videoList';
-import {  useReducer, useState } from 'react';
+import {  useCallback, useReducer, useState } from 'react';
 import ThemeContext from './context/ThemeContext';
 import VideosContext from './context/VideosContext';
 import VideoDispatchContext from './context/VideoDispatchContext';
@@ -46,9 +46,10 @@ function App() {
   const [mode, setMode] = useState('darkMode')
 
 
-  function editVideo(id) {
+  const editVideo = useCallback(function editVideo(id) {
     seteditableVideo(videos.find(video => video.id === id))
-  }
+  },[videos])
+  
 
 
   return (
